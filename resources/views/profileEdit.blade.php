@@ -4,6 +4,24 @@
     <div class="container">
         <div class="title-bar">Bolão da Copa</div>
 
+        <div class="editprofile">
+		    <?php $user = Auth::user() ?>
+            <div class="modal">
+                <div class="header">
+                    <span>EDITAR PERFIL</span>
+                </div>
+                <form action="/profile/edit" method="post" style="padding-bottom: 16px;">
+                    Nome<br>
+                    <input type="text" class="editprofileinput" name="name" value="{{$user->name}}"><br>
+                    <br>
+                    PIN
+                    <input type="password" class="editprofileinput" name="pin" value="{{$user->password}}"><br/>
+                    <button type="submit" class="normal">Salvar</button>
+                    {{ csrf_field() }}
+                </form>
+            </div>
+        </div>
+
         <div class="stats">
 			<?php
 			$user = Auth::user();
@@ -64,23 +82,6 @@
             </div>
         </div>
 
-        <div class="editprofile">
-			<?php $user = Auth::user() ?>
-            <div class="modal">
-                <div class="header">
-                    <span>EDITAR PERFIL</span>
-                </div>
-                <form action="/profile/edit" method="post" style="padding-bottom: 16px;">
-                    Nome<br>
-                    <input type="text" class="editprofileinput" name="name" value="{{$user->name}}"><br>
-                    <br>
-                    PIN
-                    <input type="password" class="editprofileinput" name="pin" value="{{$user->password}}"><br/>
-                    <button type="submit" class="normal">Salvar</button>
-                    {{ csrf_field() }}
-                </form>
-            </div>
-        </div>
     </div>
 
     </div>
