@@ -21,7 +21,7 @@ class BetController extends Controller
 
 				$bet->aScore = $request->a;
 				$bet->bScore = $request->b;
-				$bet->usu_id = Auth::id();
+				$bet->user_id = Auth::id();
 				$bet->game_id = $game_id;
 
 				$bet->save();
