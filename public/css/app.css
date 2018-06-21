@@ -76,7 +76,7 @@ html {
   grid-gap: 16px;
 }
 
-.game-list .game {
+.game {
   background-color: #EBF5FF;
   border-radius: 8px;
   grid-auto-flow: column;
@@ -86,13 +86,13 @@ html {
   grid-template-columns: 1fr 1fr;
 }
 
-.game-list .game .timedate {
+.game .timedate {
   grid-column: span 2;
   font-size: 11px;
   text-align: center;
 }
 
-.game-list .game .team {
+.game .team {
   height: 40px;
   display: grid;
   font-size: 14px;
@@ -102,11 +102,11 @@ html {
           align-items: center;
 }
 
-.game-list .game .team img {
+.game .team img {
   height: 12px;
 }
 
-.game-list .game .actions {
+.game .actions {
   grid-row: span 2;
   -ms-flex-item-align: center;
       align-self: center;
@@ -326,9 +326,31 @@ html {
   border-radius: 4px;
 }
 
+.bet_display_profile {
+  background-color: #d7edff;
+  text-align: center;
+  font-size: 24px;
+  border-radius: 4px;
+}
+
 .betdisplaylabel {
   font-size: 12px;
   font-family: 'IBM Plex Mono', monospace;
   text-transform: uppercase;
+}
+
+.editprofile form {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.editprofileinput {
+  margin-bottom: 16px;
+  height: 32px;
+  width: 100%;
+  background-color: #f3f3f3;
+  border-radius: 4px;
+  border: none;
+  font-size: 16px;
 }
 

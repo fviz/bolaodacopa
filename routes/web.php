@@ -32,6 +32,8 @@ Route::get('/logout', function() {
 });
 
 Route::get('/profile/{user}', 'PageController@profile');
+Route::get('/profile', 'PageController@profileEdit');
+Route::post('/profile/edit', 'UserController@edit');
 
 Route::post('/login', function(Request $request) {
 	if ($user = User::select('id')->where('password',$request->pin)->first())

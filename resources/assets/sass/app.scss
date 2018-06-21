@@ -75,39 +75,39 @@ html {
 	padding-bottom: 16px;
 	display: grid;
 	grid-gap: 16px;
+}
 
-	.game {
-		background-color: $light-blue;
-		border-radius: 8px;
-		grid-auto-flow: column;
-		padding: 16px;
+.game {
+	background-color: $light-blue;
+	border-radius: 8px;
+	grid-auto-flow: column;
+	padding: 16px;
+	display: grid;
+	grid-template-rows: 12px 1fr 1fr;
+	grid-template-columns: 1fr 1fr;
+
+	.timedate {
+		grid-column: span 2;
+		font-size: 11px;
+		text-align: center;
+	}
+
+	.team {
+		height: 40px;
 		display: grid;
-		grid-template-rows: 12px 1fr 1fr;
-		grid-template-columns: 1fr 1fr;
+		font-size: 14px;
+		grid-template-columns: 30px 1fr;
+		align-items: center;
 
-		.timedate {
-			grid-column: span 2;
-			font-size: 11px;
-			text-align: center;
+		img {
+			height: 12px;
 		}
+	}
 
-		.team {
-			height: 40px;
-			display: grid;
-			font-size: 14px;
-			grid-template-columns: 30px 1fr;
-			align-items: center;
-
-			img {
-				height: 12px;
-			}
-		}
-
-		.actions {
-			grid-row: span 2;
-			align-self: center;
-			justify-self: right;
-		}
+	.actions {
+		grid-row: span 2;
+		align-self: center;
+		justify-self: right;
 	}
 }
 
@@ -289,8 +289,30 @@ html {
 	border-radius: 4px;
 }
 
+.bet_display_profile {
+	background-color: #d7edff;
+	text-align: center;
+	font-size: 24px;
+	border-radius: 4px;
+}
+
 .betdisplaylabel {
 	font-size: 12px;
 	font-family: 'IBM Plex Mono', monospace;
 	text-transform: uppercase;
+}
+
+.editprofile form{
+	padding-left: 16px;
+	padding-right: 16px;
+}
+
+.editprofileinput {
+	margin-bottom: 16px;
+	height: 32px;
+	width: 100%;
+	background-color: #f3f3f3;
+	border-radius: 4px;
+	border: none;
+	font-size: 16px;
 }

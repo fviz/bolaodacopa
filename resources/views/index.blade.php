@@ -20,7 +20,7 @@
 							?>
                             <div class="game">
                                 <div class="timedate">
-                                    <span>{{date("d/m - gA", ($game->date/1000))}}</span>
+                                    <span>{{date("d/m - gA", strtotime($game->date))}}</span>
                                 </div>
                                 <div class="team">
                                     <img src="flags/{{$teamA->code}}.svg">
@@ -32,7 +32,7 @@
                                 </div>
                                 <div class="actions">
 									<?php
-									$thisbet = $game->bets->where('usu_id', Auth::id())->first();
+									$thisbet = $game->bets->where('user_id', Auth::id())->first();
 									?>
                                     @if(count($thisbet) < 1)
                                         @if (gmdate("U") * 1000 < $game->date)
@@ -69,9 +69,9 @@
                         <div class="score">
                             <div class="place">{{$key+1}}</div>
                             @if ($user->id == Auth::id())
-                                <span style="color: #007CFF">{{$user->name}}</span>
+                                <span><a href="/profile" style="color: #007CFF; text-decoration: none;">{{$user->name}}</a></span>
                             @else
-                                <span>{{$user->name}}</span>
+                                <span><a href="/profile/{{$user->id}}">{{$user->name}}</a></span>
                             @endif
                             <span>{{$user->score}}</span>
                         </div>

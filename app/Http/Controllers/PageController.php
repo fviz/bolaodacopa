@@ -28,6 +28,10 @@ class PageController extends Controller
     	return view('profile', ['user' => $user]);
     }
 
+	public function profileEdit() {
+		return view('profileEdit');
+	}
+
     public function newbet(Game $game) {
 	    $countries = Country::get();
 	    return view('newbet', ['game' => $game, 'countries' => $countries]);
@@ -37,4 +41,5 @@ class PageController extends Controller
 	    $countries = Country::get();
 	    return view('editbet', ['bet' => $bet, 'countries' => $countries]);
     }
+
 }

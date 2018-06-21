@@ -16,10 +16,11 @@ class CreateBetsTable extends Migration
         Schema::create('bets', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('game_id');
-            $table->integer('usu_id');
+            $table->integer('user_id');
             $table->integer('aScore');
             $table->integer('bScore');
-            $table->boolean('processed');
+            $table->boolean('processed')->default(0);
+            $table->integer('pointsreceived')->default(0);
             $table->timestamps();
         });
     }

@@ -44,7 +44,8 @@ class Kernel extends ConsoleKernel
     				$bet->usu->score += $points;
     				$bet->usu->save();
     				$bet->processed = true;
-    				$bet->save();
+				    $bet->pointsreceived = $points;
+				    $bet->save();
 			    }
 		    }
 
