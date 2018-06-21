@@ -79,6 +79,7 @@ html {
 .game {
   background-color: #EBF5FF;
   border-radius: 8px;
+  margin-bottom: 16px;
   grid-auto-flow: column;
   padding: 16px;
   display: grid;
