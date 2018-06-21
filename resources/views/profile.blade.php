@@ -12,7 +12,12 @@
 </head>
 <body>
 <div class="container">
-    <div class="title-bar">Bolão da Copa</div>
+    <div class="title-bar">
+        <span>Bolão da Copa</span>
+        <form action="/" method="get" style="display: inline">
+            <button class="normal" type="submit">Voltar</button>
+        </form>
+    </div>
     <div class="widgets">
         <div class="modal">
             <div class="header">

@@ -2,7 +2,12 @@
 
 @section('content')
     <div class="container">
-        <div class="title-bar">Bolão da Copa</div>
+        <div class="title-bar">
+            <span>Bolão da Copa</span>
+            <form action="/" method="get" style="display: inline">
+                <button class="normal" type="submit">Voltar</button>
+            </form>
+        </div>
 
         <div class="next-games">
             <div class="modal">
@@ -69,7 +74,8 @@
                         <div class="score">
                             <div class="place">{{$key+1}}</div>
                             @if ($user->id == Auth::id())
-                                <span><a href="/profile" style="color: #007CFF; text-decoration: none;">{{$user->name}}</a></span>
+                                <span><a href="/profile"
+                                         style="color: #007CFF; text-decoration: none;">{{$user->name}}</a></span>
                             @else
                                 <span><a href="/profile/{{$user->id}}" style="text-decoration: none">{{$user->name}}</a></span>
                             @endif
