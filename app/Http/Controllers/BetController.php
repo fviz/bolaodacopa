@@ -15,7 +15,7 @@ class BetController extends Controller
 
 		$this_game = Game::find($game_id);
 
-		if (time() < strtotime($game->date)) {
+		if (time() < strtotime($this_game->date)) {
 			if (Auth::check()) {
 				$bet = new Bet;
 
