@@ -10,7 +10,7 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      *
-     * @return void
+     * @return voidb
      */
     public function boot()
     {

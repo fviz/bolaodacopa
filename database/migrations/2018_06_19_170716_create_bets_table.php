@@ -19,6 +19,7 @@ class CreateBetsTable extends Migration
             $table->integer('usu_id');
             $table->integer('aScore');
             $table->integer('bScore');
+            $table->boolean('processed');
             $table->timestamps();
         });
     }
