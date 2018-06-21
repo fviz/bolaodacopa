@@ -20,6 +20,7 @@ env_variables:
   QUEUE_DRIVER: database
 
   DB_CONNECTION: sqlite
+  DB_DATABASE: /database/db.sqlite
 
   BROADCAST_DRIVER: log
   CACHE_DRIVER: file
