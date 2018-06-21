@@ -10,7 +10,7 @@
 			?>
             <div class="modal">
                 <div class="header">
-                    <span>ESTATÍSTICAS - {{$user->name}}</span>
+                    <span>{{$user->name}}</span>
                     <form action="/" method="get" style="display: inline">
                         <button class="normal" type="submit">Voltar</button>
                     </form>
