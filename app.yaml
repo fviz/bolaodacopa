@@ -19,8 +19,12 @@ env_variables:
 
   QUEUE_DRIVER: database
 
-  DB_CONNECTION: sqlite
-  DB_DATABASE: /database/db.sqlite
+  DB_CONNECTION: mysql
+  DB_HOST: localhost
+  DB_DATABASE: bolaodacopadb
+  DB_USERNAME: root
+  DB_PASSWORD: Gfr2021!
+  DB_SOCKET: /cloudsql/instance_name
 
   BROADCAST_DRIVER: log
   CACHE_DRIVER: file
