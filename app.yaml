@@ -1,0 +1,34 @@
+runtime: php
+enf: flex
+
+runtime_config:
+  document_root: public
+
+skip_files:
+  - .env
+
+env_variables:
+  APP_NAME: Bolão da Copa
+  APP_ENV: local
+  APP_KEY: base64:u5Cit00jkw+g8fdDsgFJZktNCspDqzEgcTrZhEd2eto=
+  APP_DEBUG: true
+
+  LOG_CHANNEL: stack
+  APP_LOG: daily
+  APP_TIMEZONE: UTC
+
+  QUEUE_DRIVER: database
+
+  DB_CONNECTION: sqlite
+
+  BROADCAST_DRIVER: log
+  CACHE_DRIVER: file
+  SESSION_DRIVER: file
+  SESSION_LIFETIME: 120
+  QUEUE_DRIVER: sync
+
+  REDIS_HOST: 127.0.0.1
+  REDIS_PASSWORD: null
+  REDIS_PORT: 6379
+
+  GOOGLE_VISION_PROJECT_ID: bolaodacopa-129
