@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Bet;
 use App\Country;
 use App\User;
 use Illuminate\Console\Scheduling\Schedule;
@@ -27,11 +28,20 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
     	$schedule->call(function(){
+
+    		$unprocessed = Bet::where('processed', 0)->get();
+    		foreach($unprocessed as $bet) {
+    			if($bet->game->isDone()) {
+    				$bet->processed = true;
+			    }
+		    }
+
 			$country = new Country;
 			$country->name = "Brasil";
 			$country->code = "br";
 			$country->created_at = now();
 			$country->save();
+
 	    })->everyMinute();
         // $schedule->command('inspire')
         //          ->hourly();
