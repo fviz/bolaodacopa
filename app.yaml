@@ -1,4 +1,4 @@
-runtime: php71
+runtime: php
 env: flex
 
 runtime_config:
