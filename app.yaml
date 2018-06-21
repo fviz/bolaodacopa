@@ -8,7 +8,7 @@ skip_files:
   - .env
 
 env_variables:
-  APP_NAME: Bolão da Copa
+  APP_NAME: bolaodacopa
   APP_ENV: local
   APP_KEY: base64:u5Cit00jkw+g8fdDsgFJZktNCspDqzEgcTrZhEd2eto=
   APP_DEBUG: true
