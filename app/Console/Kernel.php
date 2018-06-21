@@ -41,8 +41,8 @@ class Kernel extends ConsoleKernel
     				$points = $this->processScore($trueAScore, $trueBScore, $betAScore, $betBScore, $rule);
 
 
-    				$bet->usu->score += $points;
-    				$bet->usu->save();
+    				$bet->user->score += $points;
+    				$bet->user->save();
     				$bet->processed = true;
 				    $bet->pointsreceived = $points;
 				    $bet->save();

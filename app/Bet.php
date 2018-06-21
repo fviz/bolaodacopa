@@ -12,7 +12,7 @@ class Bet extends Model
 		return $this->belongsTo('App\Game');
 	}
 
-	public function user() {
+	public function usu() {
 		return $this->belongsTo('App\User');
 	}
 
