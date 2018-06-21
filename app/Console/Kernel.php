@@ -38,8 +38,11 @@ class Kernel extends ConsoleKernel
     				$betBScore = $bet->bScore;
     				$rule = $bet->game->rule;
 
-    				$this->processScore($trueAScore, $trueBScore, $betAScore, $betBScore, $rule);
+    				$points = $this->processScore($trueAScore, $trueBScore, $betAScore, $betBScore, $rule);
 
+
+    				$bet->usu->points += $points;
+    				$bet->usu->save();
     				$bet->processed = true;
     				$bet->save();
 			    }
@@ -60,7 +63,22 @@ class Kernel extends ConsoleKernel
         require base_path('routes/console.php');
     }
 
-    private function processScore() {
+    private function processScore($tascore, $tbscore, $bascore, $bbscore, $rule) {
 
+	    // Fase de grupos
+	    if ($rule == 1) {
+
+		    // Placar exato
+		    if ($tascore == $bascore && $tbscore == $bbscore) {
+			    return 3;
+			    // Time vitorioso
+		    } else if (($tascore > $tbscore && $bascore > $bbscore) || ($tascore < $tbscore && $bascore < $bbscore)) {
+			    return 1;
+			    // Empate
+		    } else if ($tascore == $tbscore && $bascore == $bbscore) {
+			    return 1;
+		    }
+
+	    }
     }
 }
