@@ -21,6 +21,7 @@ class CreateGamesTable extends Migration
             $table->integer('teamAscore')->nullable();
             $table->integer('teamBscore')->nullable();
             $table->dateTimeTz('date');
+            $table->integer('rule');
             $table->timestamps();
         });
     }

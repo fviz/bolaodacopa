@@ -32,20 +32,20 @@ class Kernel extends ConsoleKernel
     		$unprocessed = Bet::where('processed', 0)->get();
     		foreach($unprocessed as $bet) {
     			if($bet->game->isDone()) {
+    				$trueAScore = $bet->game->teamAScore;
+    				$trueBScore = $bet->game->teamBScore;
+    				$betAScore = $bet->aScore;
+    				$betBScore = $bet->bScore;
+    				$rule = $bet->game->rule;
+
+    				$this->processScore($trueAScore, $trueBScore, $betAScore, $betBScore, $rule);
+
     				$bet->processed = true;
     				$bet->save();
 			    }
 		    }
 
-			$country = new Country;
-			$country->name = "Brasil";
-			$country->code = "br";
-			$country->created_at = now();
-			$country->save();
-
 	    })->everyMinute();
-        // $schedule->command('inspire')
-        //          ->hourly();
     }
 
     /**
@@ -58,5 +58,9 @@ class Kernel extends ConsoleKernel
         $this->load(__DIR__.'/Commands');
 
         require base_path('routes/console.php');
+    }
+
+    private function processScore() {
+
     }
 }
