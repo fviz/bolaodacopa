@@ -35,7 +35,7 @@
 									$thisbet = $game->bets->where('user_id', Auth::id())->first();
 									?>
                                     @if(count($thisbet) < 1)
-                                        @if (gmdate("U") * 1000 < $game->date)
+                                        @if (time() < strtotime($game->date))
                                             <form action="/games/{{$game->id}}">
                                                 <button type="submit" class="normal newbetbutton"
                                                         data-game_id="{{$game->id}}">
