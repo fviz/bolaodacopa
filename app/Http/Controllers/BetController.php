@@ -36,7 +36,7 @@ class BetController extends Controller
     }
 
     public function edit(Bet $bet, Request $request) {
-	    if (gmdate("U") * 1000 < $bet->game->date) {
+	    if (time() < strtotime($bet->game->date)) {
 		    $bet->aScore = $request->a;
 		    $bet->bScore = $request->b;
 		    $bet->save();
