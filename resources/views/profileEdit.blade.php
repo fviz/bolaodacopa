@@ -2,7 +2,12 @@
 
 @section('content')
     <div class="container">
-        <div class="title-bar">Bolão da Copa</div>
+        <div class="title-bar">
+            <span>Bolão da Copa</span>
+            <form action="/" method="get" style="display: inline">
+                <button class="normal" type="submit">Voltar</button>
+            </form>
+        </div>
 
         <div class="editprofile">
 		    <?php $user = Auth::user() ?>
@@ -29,9 +34,6 @@
             <div class="modal">
                 <div class="header">
                     <span>{{$user->name}}</span>
-                    <form action="/" method="get" style="display: inline">
-                        <button class="normal" type="submit">Voltar</button>
-                    </form>
                 </div>
                 <div style="padding-left: 24px; padding-right: 24px; padding-bottom: 16px">
                     Sua pontuação: {{$user->score}}<br><br>
