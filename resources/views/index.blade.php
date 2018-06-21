@@ -71,7 +71,7 @@
                             @if ($user->id == Auth::id())
                                 <span><a href="/profile" style="color: #007CFF; text-decoration: none;">{{$user->name}}</a></span>
                             @else
-                                <span><a href="/profile/{{$user->id}}">{{$user->name}}</a></span>
+                                <span><a href="/profile/{{$user->id}}" style="text-decoration: none">{{$user->name}}</a></span>
                             @endif
                             <span>{{$user->score}}</span>
                         </div>

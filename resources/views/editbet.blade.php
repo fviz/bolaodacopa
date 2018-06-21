@@ -41,7 +41,11 @@
                                         href="/">Voltar.</a><br><br></span>
                         @endif
                     </form>
-                @endif
+                @else
+                    <div class="errormessage" style="margin: 16px;">
+                        <b>Acesso negado</b>. <a href="/">Voltar</a>.
+                    </div>
+                @endif<br>
             </div>
         </div>
     </div>
