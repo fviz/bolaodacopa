@@ -33,6 +33,7 @@ class Kernel extends ConsoleKernel
     		foreach($unprocessed as $bet) {
     			if($bet->game->isDone()) {
     				$bet->processed = true;
+    				$bet->save();
 			    }
 		    }
 
