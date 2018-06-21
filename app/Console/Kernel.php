@@ -32,8 +32,8 @@ class Kernel extends ConsoleKernel
     		$unprocessed = Bet::where('processed', 0)->get();
     		foreach($unprocessed as $bet) {
     			if($bet->game->isDone()) {
-    				$trueAScore = $bet->game->teamAScore;
-    				$trueBScore = $bet->game->teamBScore;
+    				$trueAScore = $bet->game->teamAscore;
+    				$trueBScore = $bet->game->teamBscore;
     				$betAScore = $bet->aScore;
     				$betBScore = $bet->bScore;
     				$rule = $bet->game->rule;
