@@ -43,7 +43,7 @@
                     Pontuação: {{$user->score}}<br><br>
                     Apostas:<br><br>
                     @foreach($user->bets as $bet)
-                        @if($bet->game->isDone() || Auth::user() == $tuser)
+                        @if($bet->game->isDone())
 							<?php
 							$teamA = App\Country::where('code', $bet->game->teamA)->first();
 							$teamB = App\Country::where('code', $bet->game->teamB)->first();
