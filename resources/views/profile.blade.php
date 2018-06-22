@@ -52,11 +52,11 @@
                                 <span>{{date("d/m - gA", strtotime($bet->game->date))}}</span>
                             </div>
                             <div class="team">
-                                <img src="flags/{{$teamA->code}}.svg">
+                                <img src="/flags/{{$teamA->code}}.svg">
                                 <span>{{$teamA->name}}</span>
                             </div>
                             <div class="team">
-                                <img src="flags/{{$teamB->code}}.svg">
+                                <img src="/flags/{{$teamB->code}}.svg">
                                 <span>{{$teamB->name}}</span>
                             </div>
                             <div class="actions">
