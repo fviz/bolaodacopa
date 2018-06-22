@@ -41,14 +41,17 @@ class Kernel extends ConsoleKernel {
 					$rule = $bet->game->rule;
 
 					$points = $this->process($trueAScore, $trueBScore, $betAScore, $betBScore, $rule);
-					Log::debug($points);
-
 
 					$bet->user->score += $points;
 					$bet->user->save();
 					$bet->processed = true;
 					$bet->pointsreceived = $points;
 					$bet->save();
+
+					// LOG
+					$messageTemplate = '%s + %d ponto(s). Jogo: %s (%d) vs %s (%d). Aposta: %d : %d.';
+					$message = sprintf($messageTemplate, $bet->user->name, $bet->pointsreceived, $bet->game->teamA, $bet->game->teamAscore, $bet->game->teamBscore, $bet->aScore, $bet->bScore);
+					Log::channel('bolao')->info($message);
 				}
 			}
 
@@ -85,7 +88,8 @@ class Kernel extends ConsoleKernel {
 			} else if ($tascore == $tbscore && $bascore == $bbscore)
 			{
 				return 1;
-			} else {
+			} else
+			{
 				return 0;
 			}
 

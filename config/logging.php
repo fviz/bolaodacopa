@@ -35,14 +35,20 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['single'],
+            'channels' => ['laravel', 'bolao'],
         ],
 
-        'single' => [
+        'laravel' => [
             'driver' => 'single',
             'path' => storage_path('logs/laravel.log'),
             'level' => 'debug',
         ],
+
+	    'bolao' => [
+	    	'driver' => 'single',
+		    'path' =>storage_path('logs/bolao.log'),
+		    'level' => 'debug',
+	    ],
 
         'daily' => [
             'driver' => 'daily',
