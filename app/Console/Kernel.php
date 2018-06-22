@@ -30,8 +30,10 @@ class Kernel extends ConsoleKernel {
 		$schedule->call(function () {
 
 			Log::channel('bolao')->info("Start bet check.");
+			$number_of_bets_processed = 0;
 
 			$unprocessed = Bet::where('processed', 0)->get();
+			Log::channel('bolao')->info("Unprocessed bets found: " . count($unprocessed) . ".");
 			foreach ($unprocessed as $bet)
 			{
 				if ($bet->game->isDone())
@@ -51,12 +53,14 @@ class Kernel extends ConsoleKernel {
 					$bet->save();
 
 					// LOG
+					$number_of_bets_processed++;
 					$messageTemplate = '%s + %d ponto(s). Jogo: %s (%d) vs %s (%d). Aposta: %d : %d.';
 					$message = sprintf($messageTemplate, $bet->user->name, $bet->pointsreceived, $bet->game->teamA, $bet->game->teamAscore, $bet->game->teamBscore, $bet->aScore, $bet->bScore);
 					Log::channel('bolao')->info($message);
 				}
 			}
 
+			Log::channel('bolao')->info("Bets processed: " . $number_of_bets_processed . ".");
 			Log::channel('bolao')->info("Stop bet check.");
 
 		})->everyMinute();
