@@ -83,7 +83,7 @@ class Kernel extends ConsoleKernel {
 					// LOG
 					$number_of_bets_processed++;
 					$messageTemplate = '%s + %d ponto(s). Jogo: %s (%d) vs %s (%d). Aposta: %d : %d.';
-					$message = sprintf($messageTemplate, $bet->user->name, $bet->pointsreceived, $bet->game->teamA, $bet->game->teamAscore, $bet->game->teamBscore, $bet->aScore, $bet->bScore);
+					$message = sprintf($messageTemplate, $bet->user->name, $bet->pointsreceived, $bet->game->teamA, $bet->game->teamAscore, $bet->game->teamA, $bet->game->teamBscore, $bet->aScore, $bet->bScore);
 					Log::channel('bolao')->info($message);
 				}
 			}
