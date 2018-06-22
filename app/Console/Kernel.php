@@ -29,6 +29,8 @@ class Kernel extends ConsoleKernel {
 	protected function schedule(Schedule $schedule) {
 		$schedule->call(function () {
 
+			Log::channel('bolao')->info("Start bet check.");
+
 			$unprocessed = Bet::where('processed', 0)->get();
 			foreach ($unprocessed as $bet)
 			{
@@ -54,6 +56,8 @@ class Kernel extends ConsoleKernel {
 					Log::channel('bolao')->info($message);
 				}
 			}
+
+			Log::channel('bolao')->info("Stop bet check.");
 
 		})->everyMinute();
 	}
