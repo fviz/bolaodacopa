@@ -22,26 +22,31 @@ Route::get('/', 'PageController@check');
 
 Route::get('/games/{game}', 'PageController@newbet');
 
+// BETS
 Route::post('/bets/add', "BetController@add");
 Route::get('/bets/{bet}', 'PageController@betedit');
 Route::post('/bets/edit/{bet}', 'BetController@edit');
 
-Route::get('/logout', function() {
-	Auth::logout();
-	return redirect()->intended('/');
-});
-
+// USER
 Route::get('/profile/{user}', 'PageController@profile');
 Route::get('/profile', 'PageController@profileEdit');
 Route::post('/profile/edit', 'UserController@edit');
+Route::get('/logout', function () {
+	Auth::logout();
 
-Route::post('/login', function(Request $request) {
-	if ($user = User::select('id')->where('password',$request->pin)->first())
+	return redirect()->intended('/');
+});
+Route::post('/login', function (Request $request) {
+	if ($user = User::select('id')->where('password', $request->pin)->first())
 	{
 		Auth::loginUsingId($user->id);
 
 		return redirect()->intended('/');
-	} else {
+	} else
+	{
 		return view('login', ['message' => 'PIN não encontrado']);
 	}
 });
+
+// API
+Route::get('/apitest', 'PageController@apitest');

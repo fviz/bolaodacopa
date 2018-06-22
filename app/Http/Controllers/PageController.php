@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 class PageController extends Controller
 {
 
+	// Check if user is logged in
     public function check() {
 	    if (Auth::check()) {
 		    $games = Game::get();
@@ -40,6 +41,14 @@ class PageController extends Controller
     public function betedit(Bet $bet) {
 	    $countries = Country::get();
 	    return view('editbet', ['bet' => $bet, 'countries' => $countries]);
+    }
+
+    public function apitest() {
+//    	return view('apitest');
+	    $json = file_get_contents('https://api.fifa.com/api/v1/calendar/matches?idseason=254645&idcompetition=17&language=en-GB&count=100');
+	    $obj = json_decode($json);
+	    dd($obj->Results);
+//	    dd($obj->Results[23]->Home->TeamName[0]->Description);
     }
 
 }

@@ -4,6 +4,7 @@ namespace App\Console;
 
 use App\Bet;
 use App\Country;
+use App\Game;
 use App\User;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -29,6 +30,20 @@ class Kernel extends ConsoleKernel {
 	protected function schedule(Schedule $schedule) {
 		$schedule->call(function () {
 
+			// Check if games are done
+			$json = file_get_contents('https://api.fifa.com/api/v1/calendar/matches?idseason=254645&idcompetition=17&language=en-GB&count=100');
+			$obj = json_decode($json);
+			foreach (Game::all() as $game) {
+				$fifa_match_status = $obj->Results[$game->id]->MatchStatus;
+				if ($fifa_match_status == 0) {
+					$game->finished = 1;
+					$game->save;
+				}
+			}
+
+
+
+			// Process bets
 			Log::channel('bolao')->info("Start bet check.");
 			$number_of_bets_processed = 0;
 
