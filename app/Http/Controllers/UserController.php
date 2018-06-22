@@ -12,7 +12,9 @@ class UserController extends Controller
     public function edit(Request $request) {
 	    $passtry = User::where('password', $request->pin)->first();
 	    $user = Auth::user();
-	    if ($passtry === null) {
+	    if ($user == $passtry) {
+		    return redirect('/profile/' . $user->id);
+	    } elseif ($passtry === null) {
 		    $user->name = $request->name;
 		    $user->password = $request->pin;
 		    $user->save();
