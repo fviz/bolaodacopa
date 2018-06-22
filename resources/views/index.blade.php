@@ -71,7 +71,7 @@
                     @foreach($users as $key=>$user)
                         <div class="score">
                                 <div class="place">{{$key+1}}</div>
-                                <a href="/profile/{{$user->id}}">
+                                <a href="/profile/{{$user->id}}" style="text-decoration: none">
                                 @if ($user->id == Auth::id())
                                     <span style="color: #007CFF; text-decoration: none;">{{$user->name}}</span>
                                 @else
