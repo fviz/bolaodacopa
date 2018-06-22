@@ -63,7 +63,7 @@
                                 </div>
                                 <div class="actions">
 									<?php
-									$thisbet = $game->bets->where('user_id', Auth::id())->first();
+									$thisbet = $game->bets->where('user_id', $user->id)->first();
 									?>
                                     @if(count($thisbet) < 1)
                                         @if (time() < strtotime($game->date))
