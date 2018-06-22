@@ -10,11 +10,15 @@ use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
     public function edit(Request $request) {
-		$user = Auth::user();
-		$user->name = $request->name;
-		$user->password = $request->pin;
-		$user->save();
-
-		return redirect('/profile/' . $user->id);
+	    $passtry = User::where('password', $request->pin)->first();
+	    $user = Auth::user();
+	    if ($passtry === null) {
+		    $user->name = $request->name;
+		    $user->password = $request->pin;
+		    $user->save();
+		    return redirect('/profile/' . $user->id);
+	    } else {
+		    return view('error', ['error' => "PIN não disponível."]);
+	    }
     }
 }

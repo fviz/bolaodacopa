@@ -380,3 +380,7 @@ html {
   font-weight: 700;
 }
 
+.modal-content {
+  padding: 0px 16px 16px 16px;
+}
+
