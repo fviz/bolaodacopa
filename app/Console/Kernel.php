@@ -35,18 +35,23 @@ class Kernel extends ConsoleKernel {
 			Log::channel('bolao')->info("Step 1/1 - Game Status");
 			$json = file_get_contents('https://api.fifa.com/api/v1/calendar/matches?idseason=254645&idcompetition=17&language=en-GB&count=100');
 			$obj = json_decode($json);
-			foreach (Game::all() as $game) {
-				Log::channel('bolao')->info("   -> Game: " . $game->teamA . " vs " . $game->teamB ."");
-				$fifa_match_status = $obj->Results[$game->id]->MatchStatus;
-				if ($fifa_match_status == 0) {
-					$game->finished = 1;
-					$game->save;
-					Log::channel('bolao')->info("      Finished. DB updated");
-				} else {
-					Log::channel('bolao')->info("      Not finished.");
+			foreach (Game::all() as $game)
+			{
+				if ( ! $game->isDone())
+				{
+					Log::channel('bolao')->info("   -> Game: " . $game->teamA . " vs " . $game->teamB . "");
+					$fifa_match_status = $obj->Results[$game->id]->MatchStatus;
+					if ($fifa_match_status == 0)
+					{
+						$game->finished = 1;
+						$game->save;
+						Log::channel('bolao')->info("      Finished. DB updated");
+					} else
+					{
+						Log::channel('bolao')->info("      Not finished.");
+					}
 				}
 			}
-
 
 
 			// Process bets
