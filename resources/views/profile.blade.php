@@ -82,7 +82,7 @@
                                     @endif
                                 </div>
                                 <div class="hint pointsreceived">
-                                    <b>+ {{ $bet->pointsreceived }} PTS</b>
+                                    <b>+ {{ $bet->pointsreceived }} PT</b>
                                 </div>
                             </div>
                         @endif
