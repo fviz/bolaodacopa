@@ -7,6 +7,7 @@ use App\Country;
 use App\User;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Facades\Log;
 
 class Kernel extends ConsoleKernel
 {
@@ -39,6 +40,7 @@ class Kernel extends ConsoleKernel
     				$rule = $bet->game->rule;
 
     				$points = $this->processScore($trueAScore, $trueBScore, $betAScore, $betBScore, $rule);
+    				Log::debug($points);
 
 
     				$bet->user->score += $points;
@@ -64,7 +66,7 @@ class Kernel extends ConsoleKernel
         require base_path('routes/console.php');
     }
 
-    private function processScore($tascore, $tbscore, $bascore, $bbscore, $rule) {
+    function processScore($tascore, $tbscore, $bascore, $bbscore, $rule) {
 
 	    // Fase de grupos
 	    if ($rule == 1) {
