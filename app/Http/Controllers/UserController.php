@@ -15,6 +15,6 @@ class UserController extends Controller
 		$user->password = $request->pin;
 		$user->save();
 
-		return redirect('/profile');
+		return redirect('/profile/' . $user->id);
     }
 }
