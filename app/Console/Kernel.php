@@ -30,7 +30,7 @@ class Kernel extends ConsoleKernel {
 	protected function schedule(Schedule $schedule) {
 		$schedule->call(function () {
 
-			Log::channel('bolao')->info("\r\n \r\n============= Start Fifa API check =============");
+			Log::channel('bolao')->info("\r\n \r\n============ Start Fifa API check ============");
 			$json = file_get_contents('https://api.fifa.com/api/v1/calendar/matches?idseason=254645&idcompetition=17&language=en-GB&count=100');
 			$obj = json_decode($json);
 
