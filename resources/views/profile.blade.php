@@ -40,10 +40,10 @@
                     <span>{{$user->name}}</span>
                 </div>
                 <div style="padding-left: 24px; padding-right: 24px; padding-bottom: 16px">
-                    Pontuação: {{$user->score}}<br><br>
-                    Apostas:<br><br>
+                    <span class="stattitle">Pontuação</span><br><span class="statbig">{{$user->score}}</span><br><br>
+                    <span class="stattitle">APOSTAS</span><br><br>
                     @foreach($user->bets as $bet)
-                        @if($bet->game->isDone())
+                        @if(!$bet->game->isDone())
 							<?php
 							$teamA = App\Country::where('code', $bet->game->teamA)->first();
 							$teamB = App\Country::where('code', $bet->game->teamB)->first();
@@ -84,6 +84,7 @@
                             </div>
                         @endif
                     @endforeach
+                    <div class="hint">As apostas aparecerão aqui ao final do jogo.</div>
                 </div>
             </div>
         </div>
