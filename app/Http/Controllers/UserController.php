@@ -15,13 +15,13 @@ class UserController extends Controller {
 
 		if ($passtry === null)
 		{
-
+			$user->password = $request->pin;
+			$user->save();
 		} else
 		{
 			if ($user->id == $passtry->id)
 			{
 				$user->name = $request->name;
-				$user->password = $request->pin;
 				$user->save();
 
 				return redirect('/profile/' . $user->id);
