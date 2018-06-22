@@ -22,7 +22,7 @@
                 <form action="/login" method="POST">
                     {{ csrf_field() }}
                     <input type="password" name="pin">
-                    <button type="submit" class="normal">Entrar!</button>
+                    <button type="submit" class="normal">Entrar</button>
                     @if (isset($message))
                         <div class="errormessage">{{$message}}</div>
                     @endif
