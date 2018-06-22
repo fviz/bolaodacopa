@@ -9,6 +9,7 @@
             </form>
         </div>
 
+        {{-- EDIT PROFILE SECTION--}}
         @if(Auth::user() == $tuser)
             <div class="editprofile">
 				<?php $user = Auth::user() ?>
@@ -29,6 +30,7 @@
             </div>
         @endif
 
+        {{-- STATS SECTION --}}
         <div class="stats">
 			<?php
 			$user = $tuser;
@@ -42,46 +44,47 @@
                     Apostas:<br><br>
                     {{--@if($user->bets)--}}
                     @foreach($user->bets as $bet)
-						<?php
-						$teamA = App\Country::where('code', $bet->game->teamA)->first();
-						$teamB = App\Country::where('code', $bet->game->teamB)->first();
-						$game = $bet->game;
-						?>
-                        <div class="game">
-                            <div class="timedate">
-                                <span>{{date("d/m - gA", strtotime($bet->game->date))}}</span>
-                            </div>
-                            <div class="team">
-                                <img src="/flags/{{$teamA->code}}.svg">
-                                <span>{{$teamA->name}}</span>
-                            </div>
-                            <div class="team">
-                                <img src="/flags/{{$teamB->code}}.svg">
-                                <span>{{$teamB->name}}</span>
-                            </div>
-                            <div class="actions">
-								<?php
-								$thisbet = $game->bets->where('user_id', Auth::id())->first();
-								?>
-                                @if(count($thisbet) < 1)
-                                    @if (time() < strtotime($game->date))
-                                        <form action="/games/{{$game->id}}">
-                                            <button type="submit" class="normal newbetbutton"
-                                                    data-game_id="{{$game->id}}">
-                                                Fazer aposta
-                                            </button>
-                                        </form>
+                        @if($bet->game->isDone())
+							<?php
+							$teamA = App\Country::where('code', $bet->game->teamA)->first();
+							$teamB = App\Country::where('code', $bet->game->teamB)->first();
+							$game = $bet->game;
+							?>
+                            <div class="game">
+                                <div class="timedate">
+                                    <span>{{date("d/m - gA", strtotime($bet->game->date))}}</span>
+                                </div>
+                                <div class="team">
+                                    <img src="/flags/{{$teamA->code}}.svg">
+                                    <span>{{$teamA->name}}</span>
+                                </div>
+                                <div class="team">
+                                    <img src="/flags/{{$teamB->code}}.svg">
+                                    <span>{{$teamB->name}}</span>
+                                </div>
+                                <div class="actions">
+									<?php
+									$thisbet = $game->bets->where('user_id', Auth::id())->first();
+									?>
+                                    @if(count($thisbet) < 1)
+                                        @if (time() < strtotime($game->date))
+                                            <form action="/games/{{$game->id}}">
+                                                <button type="submit" class="normal newbetbutton"
+                                                        data-game_id="{{$game->id}}">
+                                                    Fazer aposta
+                                                </button>
+                                            </form>
+                                        @endif
+                                    @else
+                                        <div class="betdisplaylabel">Sua aposta</div>
+                                        <div class="bet_display_profile" data-bet_id="{{$thisbet->id}}">
+                                            {{ $thisbet->aScore }} : {{ $thisbet->bScore }}
+                                        </div>
                                     @endif
-                                @else
-                                    <div class="betdisplaylabel">Sua aposta</div>
-                                    <div class="bet_display_profile" data-bet_id="{{$thisbet->id}}">
-                                        {{ $thisbet->aScore }} : {{ $thisbet->bScore }}
-                                    </div>
-                                @endif
+                                </div>
                             </div>
-                        </div>
-                    @endforeach
-                    {{--@endif--}}
+                            @endforeach
+                        @endif
                 </div>
             </div>
         </div>
