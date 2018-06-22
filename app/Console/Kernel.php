@@ -30,21 +30,39 @@ class Kernel extends ConsoleKernel {
 	protected function schedule(Schedule $schedule) {
 		$schedule->call(function () {
 
-			// Check if games are done
-			Log::channel('bolao')->info("== Start Fifa API check ==");
-			Log::channel('bolao')->info("Step 1/1 - Game Status");
+			Log::channel('bolao')->info("\r\n \r\n============= Start Fifa API check =============");
 			$json = file_get_contents('https://api.fifa.com/api/v1/calendar/matches?idseason=254645&idcompetition=17&language=en-GB&count=100');
 			$obj = json_decode($json);
+
+
 			foreach (Game::all() as $game)
 			{
 				if ( ! $game->isDone())
 				{
+
+					$fifa_game = $obj->Results[$game->id];
+					$fifa_match_status = $fifa_game->MatchStatus;
+
+					// Check scores
+					Log::channel('bolao')->info("Step 1/2 - Game Scores");
+					if ($fifa_match_status == 3)
+					{
+						Log::channel('bolao')->info("   -> Game " . $game->teamA . " vs " . $game->teamB . " -> New Score -> " . $fifa_game->HomeTeamScore . " : " . $fifa_game->AwayTeamScore . "");
+						$game->teamAscore = $fifa_game->HomeTeamScore;
+						$game->teamBscore = $fifa_game->AwayTeamScore;
+						$game->save();
+
+						Log::channel('bolao')->info("\r\nFinished checking scores.");
+					}
+
+
+					// Check if games are done
+					Log::channel('bolao')->info("Step 2/2 - Game Status");
 					Log::channel('bolao')->info("   -> Game: " . $game->teamA . " vs " . $game->teamB . "");
-					$fifa_match_status = $obj->Results[$game->id]->MatchStatus;
 					if ($fifa_match_status == 0)
 					{
 						$game->finished = 1;
-						$game->save;
+						$game->save();
 						Log::channel('bolao')->info("      Finished. DB updated");
 					} else
 					{
