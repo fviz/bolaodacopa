@@ -86,7 +86,7 @@ html {
 	grid-auto-flow: column;
 	padding: 16px;
 	display: grid;
-	grid-template-rows: 12px 1fr 1fr;
+	grid-template-rows: 12px 1fr 1fr auto;
 	grid-template-columns: 1fr 1fr;
 
 	.timedate {
@@ -247,7 +247,7 @@ html {
 			justify-content: center;
 			align-items: center;
 			cursor: pointer;
-			border: 1px solid rgba(0,0,0,0);
+			border: 1px solid rgba(0, 0, 0, 0);
 			transition: all 100ms;
 
 			span {
@@ -261,7 +261,6 @@ html {
 			&:focus {
 				border: 1px solid;
 			}
-
 
 			&:active {
 				background-color: white;
@@ -305,7 +304,7 @@ html {
 	text-transform: uppercase;
 }
 
-.editprofile form{
+.editprofile form {
 	padding-left: 16px;
 	padding-right: 16px;
 }
@@ -341,4 +340,11 @@ html {
 
 .modal-content {
 	padding: 0px 16px 16px 16px;
+}
+
+.pointsreceived {
+	grid-column: 1 / -1;
+	grid-row: 4 / span 1;
+	background-color: #d6ebfc;
+	color: #144a63;
 }

@@ -89,7 +89,7 @@ html {
   grid-auto-flow: column;
   padding: 16px;
   display: grid;
-  grid-template-rows: 12px 1fr 1fr;
+  grid-template-rows: 12px 1fr 1fr auto;
   grid-template-columns: 1fr 1fr;
 }
 
@@ -382,5 +382,12 @@ html {
 
 .modal-content {
   padding: 0px 16px 16px 16px;
+}
+
+.pointsreceived {
+  grid-column: 1 / -1;
+  grid-row: 4 / span 1;
+  background-color: #d6ebfc;
+  color: #144a63;
 }
 

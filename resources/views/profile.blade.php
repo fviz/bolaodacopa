@@ -81,6 +81,9 @@
                                         </div>
                                     @endif
                                 </div>
+                                <div class="hint pointsreceived">
+                                    <b>+ {{ $bet->pointsreceived }} PTS</b>
+                                </div>
                             </div>
                         @endif
                     @endforeach
