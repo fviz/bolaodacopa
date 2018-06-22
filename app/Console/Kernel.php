@@ -58,7 +58,7 @@ class Kernel extends ConsoleKernel
     				$betBScore = $bet->bScore;
     				$rule = $bet->game->rule;
 
-    				$points = $this->processScore($trueAScore, $trueBScore, $betAScore, $betBScore, $rule);
+    				$points = processScore($trueAScore, $trueBScore, $betAScore, $betBScore, $rule);
     				Log::debug($points);
 
 
