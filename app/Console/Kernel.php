@@ -53,6 +53,8 @@ class Kernel extends ConsoleKernel {
 						$game->save();
 
 						Log::channel('bolao')->info("\r\nFinished checking scores.");
+					} else {
+						Log::channel('bolao')->info("   -> Game " . $game->teamA . " vs " . $game->teamB . " -> Game is not on. Won't check score.");
 					}
 
 
