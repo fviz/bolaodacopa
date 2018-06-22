@@ -9,81 +9,87 @@ use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Illuminate\Support\Facades\Log;
 
-class Kernel extends ConsoleKernel
-{
-    /**
-     * The Artisan commands provided by your application.
-     *
-     * @var array
-     */
-    protected $commands = [
-        //
-    ];
+class Kernel extends ConsoleKernel {
 
-    /**
-     * Define the application's command schedule.
-     *
-     * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
-     * @return void
-     */
-    protected function schedule(Schedule $schedule)
-    {
-    	$schedule->call(function(){
+	/**
+	 * The Artisan commands provided by your application.
+	 *
+	 * @var array
+	 */
+	protected $commands = [
+		//
+	];
 
-		    function processScore($tascore, $tbscore, $bascore, $bbscore, $rule) {
+	/**
+	 * Define the application's command schedule.
+	 *
+	 * @param  \Illuminate\Console\Scheduling\Schedule $schedule
+	 * @return void
+	 */
+	protected function schedule(Schedule $schedule) {
+		$schedule->call(function () {
 
-			    // Fase de grupos
-			    if ($rule == 1) {
+			$unprocessed = Bet::where('processed', 0)->get();
+			foreach ($unprocessed as $bet)
+			{
+				if ($bet->game->isDone())
+				{
+					$trueAScore = $bet->game->teamAscore;
+					$trueBScore = $bet->game->teamBscore;
+					$betAScore = $bet->aScore;
+					$betBScore = $bet->bScore;
+					$rule = $bet->game->rule;
 
-				    // Placar exato
-				    if ($tascore == $bascore && $tbscore == $bbscore) {
-					    return 3;
-					    // Time vitorioso
-				    } else if (($tascore > $tbscore && $bascore > $bbscore) || ($tascore < $tbscore && $bascore < $bbscore)) {
-					    return 1;
-					    // Empate
-				    } else if ($tascore == $tbscore && $bascore == $bbscore) {
-					    return 1;
-				    }
-
-			    }
-		    }
-
-    		$unprocessed = Bet::where('processed', 0)->get();
-    		foreach($unprocessed as $bet) {
-    			if($bet->game->isDone()) {
-    				$trueAScore = $bet->game->teamAscore;
-    				$trueBScore = $bet->game->teamBscore;
-    				$betAScore = $bet->aScore;
-    				$betBScore = $bet->bScore;
-    				$rule = $bet->game->rule;
-
-    				$points = processScore($trueAScore, $trueBScore, $betAScore, $betBScore, $rule);
-    				Log::debug($points);
+					$points = $this->process($trueAScore, $trueBScore, $betAScore, $betBScore, $rule);
+					Log::debug($points);
 
 
-    				$bet->user->score += $points;
-    				$bet->user->save();
-    				$bet->processed = true;
-				    $bet->pointsreceived = $points;
-				    $bet->save();
-			    }
-		    }
+					$bet->user->score += $points;
+					$bet->user->save();
+					$bet->processed = true;
+					$bet->pointsreceived = $points;
+					$bet->save();
+				}
+			}
 
-	    })->everyMinute();
-    }
+		})->everyMinute();
+	}
 
-    /**
-     * Register the commands for the application.
-     *
-     * @return void
-     */
-    protected function commands()
-    {
-        $this->load(__DIR__.'/Commands');
+	/**
+	 * Register the commands for the application.
+	 *
+	 * @return void
+	 */
+	protected function commands() {
+		$this->load(__DIR__ . '/Commands');
 
-        require base_path('routes/console.php');
-    }
+		require base_path('routes/console.php');
+	}
+
+	protected static function process($tascore, $tbscore, $bascore, $bbscore, $rule) {
+
+		// Fase de grupos
+		if ($rule == 1)
+		{
+
+			// Placar exato
+			if ($tascore == $bascore && $tbscore == $bbscore)
+			{
+
+				return 3;
+				// Time vitorioso
+			} else
+				if (($tascore > $tbscore && $bascore > $bbscore) || ($tascore < $tbscore && $bascore < $bbscore))
+				{
+					return 1;
+					// Empate
+				} else if ($tascore == $tbscore && $bascore == $bbscore)
+				{
+					return 1;
+				}
+
+		}
 
 
+	}
 }
