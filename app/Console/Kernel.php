@@ -78,15 +78,16 @@ class Kernel extends ConsoleKernel {
 
 				return 3;
 				// Time vitorioso
-			} else
-				if (($tascore > $tbscore && $bascore > $bbscore) || ($tascore < $tbscore && $bascore < $bbscore))
-				{
-					return 1;
-					// Empate
-				} else if ($tascore == $tbscore && $bascore == $bbscore)
-				{
-					return 1;
-				}
+			} else if (($tascore > $tbscore && $bascore > $bbscore) || ($tascore < $tbscore && $bascore < $bbscore))
+			{
+				return 1;
+				// Empate
+			} else if ($tascore == $tbscore && $bascore == $bbscore)
+			{
+				return 1;
+			} else {
+				return 0;
+			}
 
 		}
 
