@@ -42,9 +42,8 @@
                 <div style="padding-left: 24px; padding-right: 24px; padding-bottom: 16px">
                     Pontuação: {{$user->score}}<br><br>
                     Apostas:<br><br>
-                    {{--@if($user->bets)--}}
                     @foreach($user->bets as $bet)
-                        @if($bet->game->isDone())
+                        @if($bet->game->isDone() || Auth::user() == $tuser)
 							<?php
 							$teamA = App\Country::where('code', $bet->game->teamA)->first();
 							$teamB = App\Country::where('code', $bet->game->teamB)->first();
