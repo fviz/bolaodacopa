@@ -53,6 +53,8 @@ class Kernel extends ConsoleKernel {
 				}
 			}
 
+			Log::channel('bolao')->info("\r\n---");
+
 
 			// Process bets
 			Log::channel('bolao')->info("== Start Bet check ==");
@@ -87,7 +89,8 @@ class Kernel extends ConsoleKernel {
 			}
 
 			Log::channel('bolao')->info("Bets processed: " . $number_of_bets_processed . ".");
-			Log::channel('bolao')->info("Stop bet check.");
+			Log::channel('bolao')->info("Stop bet check. \r\n");
+			Log::channel('bolao')->info("Script finished. \r\n\r\n");
 
 		})->everyMinute();
 	}
