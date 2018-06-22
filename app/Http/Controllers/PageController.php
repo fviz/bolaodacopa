@@ -25,7 +25,7 @@ class PageController extends Controller
     }
 
     public function profile(User $user) {
-    	return view('profile', ['user' => $user]);
+    	return view('profile', ['tuser' => $user]);
     }
 
 	public function profileEdit() {
