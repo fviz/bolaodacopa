@@ -41,8 +41,7 @@
                         @if(time() < strtotime($bet->game->date))
                             <button class="big" id="editbetsubmit">Alterar</button>
                         @else
-                            <span>O jogo já começou. Você não pode alterar sua aposta. <a
-                                        href="/">Voltar.</a><br><br></span>
+                            <div class="hint">O jogo já começou. Você não pode alterar sua aposta.</div>
                         @endif
                     </form>
                 @else
