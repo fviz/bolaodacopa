@@ -57,7 +57,7 @@ class Kernel extends ConsoleKernel {
 					// Check if games are done
 					Log::channel('bolao')->info("Step 2/2 - Game Status");
 					Log::channel('bolao')->info("   -> Game: " . $game->teamA . " vs " . $game->teamB . "");
-					if ($fifa_match_status == 0)
+					if ((time() + 4800) > strtotime($game->date) && $fifa_match_status == 0)
 					{
 						$game->finished = 1;
 						$game->save();
@@ -108,7 +108,7 @@ class Kernel extends ConsoleKernel {
 			Log::channel('bolao')->info("Stop bet check. \r\n");
 			Log::channel('bolao')->info("Script finished. \r\n\r\n");
 
-		})->everyMinute()->between('12:00', '23:50');
+		})->everyMinute()->between('12:00', '21:00');
 	}
 
 	/**
