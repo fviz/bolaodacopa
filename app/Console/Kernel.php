@@ -108,7 +108,7 @@ class Kernel extends ConsoleKernel {
 			Log::channel('bolao')->info("Stop bet check. \r\n");
 			Log::channel('bolao')->info("Script finished. \r\n\r\n");
 
-		})->everyMinute()->between('12:00', '20:00');
+		})->everyMinute()->between('12:00', '23:50');
 	}
 
 	/**
